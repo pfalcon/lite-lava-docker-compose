@@ -5,7 +5,8 @@ FROM ${image}
 ENV JLINK_DEB="JLink_Linux_V688a_x86_64.deb"
 ENV JLINK_URL="https://www.segger.com/downloads/jlink/${JLINK_DEB}"
 ENV ZEPHYR_HOST_TOOLS="zephyr-sdk-x86_64-hosttools-standalone-0.9.sh"
-ENV ZEPHYR_HOST_TOOLS_URL="https://builds.zephyrproject.org/sdk/0.11.4/${ZEPHYR_HOST_TOOLS}"
+
+COPY ${ZEPHYR_HOST_TOOLS} .
 
 COPY lava-coordinator.sh /root/entrypoint.d/
 
@@ -21,7 +22,6 @@ RUN apt-get update && \
         dpkg -i ${JLINK_DEB} && \
         rm ${JLINK_DEB} && \
         ln -s /opt/SEGGER/JLink/JLinkExe /usr/local/bin && \
-        wget ${ZEPHYR_HOST_TOOLS_URL} -O ${ZEPHYR_HOST_TOOLS} && \
         chmod a+x ${ZEPHYR_HOST_TOOLS} && \
         ./${ZEPHYR_HOST_TOOLS} -d /opt/zephyr-sdk -y && \
         rm ${ZEPHYR_HOST_TOOLS} && \
