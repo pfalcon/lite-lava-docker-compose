@@ -8,6 +8,10 @@ LAVA_IDENTITY = lava-docker
 # Name of LAVA worker to which devices are registered/attached.
 LAVA_WORKER = worker0
 
+ZEPHYR_SDK_URL = https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.10.3/zephyr-sdk-0.10.3-setup.run
+ZEPHYR_SDK = $(shell basename $(ZEPHYR_SDK_URL))
+ZEPHYR_HOST_TOOLS_URL="https://builds.zephyrproject.org/sdk/0.10.3/zephyr-sdk-x86_64-hosttools-standalone-0.9.sh"
+ZEPHYR_HOST_TOOLS = $(shell basename $(ZEPHYR_HOST_TOOLS_URL))
 
 # sudo echo below is guaranteedly get a sudo password prompt and provide input
 # (may be problematic in 2nd command with "&").
@@ -44,8 +48,12 @@ board-configs:
 	-mv contrib/LAVA.rules contrib/LAVA.rules.old
 	contrib/make-board-files.sh devices
 
-# Make any preparation steps (currently none) and build docker-compose images.
+# Download big files to host, then build images.
+# You're welcome to copy or *hard*link existing files into lite-lava-dispatcher/
+# directory (symlinks won't work).
 build:
+	test -f lite-lava-dispatcher/$(ZEPHYR_HOST_TOOLS) || \
+	    wget $(ZEPHYR_HOST_TOOLS_URL) -O lite-lava-dispatcher/$(ZEPHYR_HOST_TOOLS)
 	docker-compose build
 
 install:
