@@ -11,7 +11,7 @@ LAVA_WORKER = worker0
 
 # sudo echo below is guaranteedly get a sudo password prompt and provide input
 # (may be problematic in 2nd command with "&").
-all:
+all: clean-env
 	docker-compose build
 	sudo echo
 	sudo contrib/udev-forward.py -i lava-dispatcher &
