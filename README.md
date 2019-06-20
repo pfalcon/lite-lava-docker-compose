@@ -1,3 +1,17 @@
+This is pfalcon's branch of LITE containerized LAVA setup.
+
+Changes:
+* Captures serial and generated configs for my boards.
+* Some WIP changes for docker-compose setup (those which may be generally
+  useful, are intended to be submitted upstream).
+
+Read [correspondig doc section](https://collaborate.linaro.org/pages/viewpage.action?pageId=118293253#GettingStartedwithLAVA,Docker,andaFRDM-K64F:-(Semi)AutomatedContainerizedSetup)
+to see how this is intended to be used).
+
+The original README below.
+
+-------
+
 lite-lava-docker-compose
 ========================
 
