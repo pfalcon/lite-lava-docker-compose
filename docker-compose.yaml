@@ -57,15 +57,15 @@ services:
       # set the 'source:' to point to where your lava checkout is
       # The example assumes its relative in ../lava
       #
-#    - type: bind
-#      source: ../lava/lava_server
-#      target: /usr/lib/python3/dist-packages/lava_server
-#    - type: bind
-#      source: ../lava/lava_scheduler_app
-#      target: /usr/lib/python3/dist-packages/lava_scheduler_app
-#    - type: bind
-#      source: ../lava/lava_common
-#      target: /usr/lib/python3/dist-packages/lava_common
+    - type: bind
+      source: ../lava/lava_server
+      target: /usr/lib/python3/dist-packages/lava_server
+    - type: bind
+      source: ../lava/lava_scheduler_app
+      target: /usr/lib/python3/dist-packages/lava_scheduler_app
+    - type: bind
+      source: ../lava/lava_common
+      target: /usr/lib/python3/dist-packages/lava_common
     depends_on:
     - db
     - lava-publisher
@@ -128,15 +128,15 @@ services:
       # set the 'source:' to point to where your lava checkout is
       # The example assumes its relative in ../lava
       #
-#    - type: bind
-#      source: ../lava/lava_dispatcher
-#      target: /usr/lib/python3/dist-packages/lava_dispatcher
-#    - type: bind
-#      source: ../lava/lava_common
-#      target: /usr/lib/python3/dist-packages/lava_common
-#    - type: bind
-#      source: ../lava/lava_dispatcher_host
-#      target: /usr/lib/python3/dist-packages/lava_dispatcher_host
+    - type: bind
+      source: ../lava/lava_dispatcher
+      target: /usr/lib/python3/dist-packages/lava_dispatcher
+    - type: bind
+      source: ../lava/lava_common
+      target: /usr/lib/python3/dist-packages/lava_common
+    - type: bind
+      source: ../lava/lava_dispatcher_host
+      target: /usr/lib/python3/dist-packages/lava_dispatcher_host
 
   lava-dispatcher-webserver:
     image: httpd
