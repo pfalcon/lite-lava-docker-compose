@@ -1,0 +1,69 @@
+job_name: docker-2-insts
+
+device_type: docker
+
+timeouts:
+  job:
+    minutes: 3
+  action:
+    minutes: 1
+visibility: public
+
+actions:
+
+- deploy:
+    namespace: docker1
+    to: docker
+    image:
+        name: hello-world
+#        local: true
+
+- boot:
+    namespace: docker1
+    method: docker
+    command: ""
+    prompts:
+    - 'Hello from Docker'
+
+- test:
+    namespace: docker1
+    timeout:
+      seconds: 15
+
+    monitors:
+    - name: docker1-monitor1
+      start: ""
+      end: "For more examples and ideas, visit:"
+      pattern: "(?P<result>(__none-such__))"
+      fixupdict:
+        PASS: pass
+        FAIL: fail
+
+
+- deploy:
+    namespace: docker2
+    to: docker
+    image:
+        name: busybox
+#        local: true
+
+- boot:
+    namespace: docker2
+    method: docker
+    command: "sh -c 'sleep 5; ls -l --color=never'"
+    prompts:
+    - '/ #'
+
+- test:
+    namespace: docker2
+    timeout:
+      seconds: 15
+
+    monitors:
+    - name: docker2-monitor1
+      start: ""
+      end: "var"
+      pattern: "(?P<result>(__none-such__))"
+      fixupdict:
+        PASS: pass
+        FAIL: fail
