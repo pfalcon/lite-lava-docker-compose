@@ -1,2 +1,4 @@
 ACTION=="add", ENV{ID_SERIAL_SHORT}=="0240000034544e45000500018aa900222011000097969900", RUN+="/usr/local/bin/usb-passthrough -a -d %E{ID_SERIAL_SHORT} -i lava-dispatcher"
 ACTION=="add", SUBSYSTEM=="tty", ENV{ID_SERIAL_SHORT}=="0240000034544e45000500018aa900222011000097969900", RUN+="/usr/local/bin/usb-passthrough -a -d %E{ID_SERIAL_SHORT} -i lava-ser2net"
+ACTION=="add", ENV{ID_SERIAL_SHORT}=="0201000036934e45001a40159f3500410e61000097969900", RUN+="/usr/local/bin/usb-passthrough -a -d %E{ID_SERIAL_SHORT} -i lava-dispatcher"
+ACTION=="add", SUBSYSTEM=="tty", ENV{ID_SERIAL_SHORT}=="0201000036934e45001a40159f3500410e61000097969900", RUN+="/usr/local/bin/usb-passthrough -a -d %E{ID_SERIAL_SHORT} -i lava-ser2net"

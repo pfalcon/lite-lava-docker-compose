@@ -1,0 +1,6 @@
+{% extends 'frdm-kw41z.jinja2' %}
+{% set board_id = '0201000036934e45001a40159f3500410e61000097969900' %}
+{% set device_info = [{'board_id': '0201000036934e45001a40159f3500410e61000097969900'}] %}
+{% set usb_mass_device = '/dev/disk/by-id/usb-MBED_VFS_0201000036934e45001a40159f3500410e61000097969900-0:0' %}
+{% set connection_command = 'telnet lava-ser2net 5002' %}
+{% set resets_after_flash = false %}
